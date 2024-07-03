@@ -1,22 +1,23 @@
-# Dockerfile
+# Usa una imagen base específica de Node.js
+FROM node:20.15
 
-# Use the official Node.js 14 image as a base image
-FROM node:14
+# Establece el directorio de trabajo
+WORKDIR /usr/src/app
 
-# Set the working directory in the container to /app
-WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory
+# Copia el package.json y el package-lock.json
 COPY package*.json ./
 
-# Install dependencies
+# Instala las dependencias
 RUN npm install
 
-# Copy the rest of the source code to the working directory
+# Copia el resto de la aplicación
 COPY . .
 
-# Expose port 3000
+# Expone el puerto de la aplicación (ajusta según tu aplicación)
 EXPOSE 3000
 
-# Command to run the application
+# Establece las variables de entorno (ajusta según tus necesidades)
+ENV NODE_ENV=production
+
+# Comando para ejecutar la aplicación
 CMD ["node", "app.js"]
